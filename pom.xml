@@ -72,5 +72,6 @@
     </build>
     <modules>
         <module>../services-subscription</module>
+        <module>../rest-api-cron</module>
     </modules>
 </project>
