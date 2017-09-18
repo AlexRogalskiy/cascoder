@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.wildbeeslabs.rest</groupId>
+    <groupId>com.wildbeeslabs.api.rest</groupId>
     <artifactId>cascoder</artifactId>
     <version>1.0.0-RELEASE</version>
     <packaging>pom</packaging>
@@ -17,17 +17,26 @@
     </parent>
     
     <properties>
+        <!--<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
+        
+        <springframework.version>4.3.10.RELEASE</springframework.version>
+        <springsecurity.version>4.2.3.RELEASE</springsecurity.version>
+        <apache.commons.version>3.5</apache.commons.version>
+        <modelmapper.version>1.1.0</modelmapper.version>
+        <docker.image.prefix>rest-api</docker.image.prefix>
+        <rest-assured.version>2.9.0</rest-assured.version>
     </properties>
     
     <!--<issueManagement>
         <url>https://github.com/AlexRogalskiy/SubscriptionServiceREST/issues</url>
         <system>GitHub Issues</system>
-    </issueManagement>
+    </issueManagement>-->
 
     <licenses>
         <license>
@@ -44,7 +53,7 @@
             <url>https://github.com/AlexRogalskiy</url>
             <id>AlexRogalskiy</id>
         </developer>
-    </developers>-->
+    </developers>
 
     <!--<ciManagement>
         <system>Jenkins</system>
@@ -57,21 +66,71 @@
         <developerConnection>scm:git:git://github.com/AlexRogalskiy/SubscriptionServiceREST.git</developerConnection>
     </scm>-->
     
+    <!--<repositories>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+ 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>-->
+    
+    <reporting>
+        <outputDirectory>${project.build.directory}/site</outputDirectory>
+    </reporting>
+  
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <showDeprecation>true</showDeprecation>
-                    <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
-                </configuration>
-            </plugin>
-        </plugins>
+        <directory>${project.basedir}/target</directory>
+        <outputDirectory>${project.build.directory}/classes</outputDirectory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+        <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+            </testResource>
+        </testResources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <showDeprecation>true</showDeprecation>
+                        <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
     <modules>
-        <module>../services-subscription</module>
-        <module>../rest-api-cron</module>
+        <!--<module>../services-subscription</module>
+        <module>../rest-api-cron</module>-->
     </modules>
 </project>
