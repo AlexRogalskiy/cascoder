@@ -26,6 +26,7 @@
         <java.version>1.8</java.version>
         
         <springframework.version>4.3.10.RELEASE</springframework.version>
+        <springframework.mongo.version>1.10.7.RELEASE</springframework.mongo.version>
         <springsecurity.version>4.2.3.RELEASE</springsecurity.version>
         <apache.commons.version>3.5</apache.commons.version>
         <modelmapper.version>1.1.0</modelmapper.version>
